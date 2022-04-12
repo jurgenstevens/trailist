@@ -1,0 +1,4 @@
+Always remember to run these to commands in conjunction with one another if you want to successfully update the database. 
+
+python3 -m flask db migrate
+python3 -m flask db upgrade

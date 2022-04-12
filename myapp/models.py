@@ -31,3 +31,21 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f"Username {self.username}"
 
+# trail model
+class Trail(db.Model):
+    __tablename__ = 'trail'
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.DateTime, nullable=False,default=datetime.utcnow)
+    trail_name = db.Column(db.String(140), nullable=False)
+    distance = db.Column(db.Integer, nullable=False)
+    review = db.Column(db.Integer, nullable=False)
+    comment = db.Column(db.Text, nullable=False)
+
+    def __init__(self, trail_name, distance, review, comment):
+        self.trail_name = trail_name
+        self.distance = distance
+        self.review = review
+        self.comment = comment
+
+    def __repr__(self):
+        return f"Trail ID: {self.id} -- Date: {self.date} --- Trail Name: {self.trail_name}"
