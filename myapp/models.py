@@ -18,6 +18,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(64), unique=True, index=True)
     username = db.Column(db.String(64), unique=True, index=True)
     password_hash = db.Column(db.String(128))
+    trails = db.relationship('Trail', backref='hiker', lazy=True)
 
     def __init__(self, email, username, password):
         self.email = email
@@ -33,10 +34,10 @@ class User(db.Model, UserMixin):
 
 # trail model
 class Trail(db.Model):
-    __tablename__ = 'trail'
+    __tablename__ = 'trails'
     id = db.Column(db.Integer, primary_key=True)
     # user_id is ONE user to MANY trails ie ForeignKey is used
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     date = db.Column(db.DateTime, nullable=False,default=datetime.utcnow)
     trail_name = db.Column(db.String(140), nullable=False)
     distance = db.Column(db.Integer, nullable=False)
