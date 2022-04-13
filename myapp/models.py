@@ -35,17 +35,21 @@ class User(db.Model, UserMixin):
 class Trail(db.Model):
     __tablename__ = 'trail'
     id = db.Column(db.Integer, primary_key=True)
+    # user_id is ONE user to MANY trails ie ForeignKey is used
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     date = db.Column(db.DateTime, nullable=False,default=datetime.utcnow)
     trail_name = db.Column(db.String(140), nullable=False)
     distance = db.Column(db.Integer, nullable=False)
     review = db.Column(db.Integer, nullable=False)
     comment = db.Column(db.Text, nullable=False)
+    trail_image = db.Column(db.String(140), nullable=False)
 
-    def __init__(self, trail_name, distance, review, comment):
+    def __init__(self, trail_name, distance, review, comment, trail_image):
         self.trail_name = trail_name
         self.distance = distance
         self.review = review
         self.comment = comment
+        self.trail_image = trail_image
 
     def __repr__(self):
         return f"Trail ID: {self.id} -- Date: {self.date} --- Trail Name: {self.trail_name}"
