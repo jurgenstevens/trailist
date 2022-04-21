@@ -1,8 +1,11 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, TextAreaField
+from wtforms import StringField, SubmitField, TextAreaField, IntegerField
 from wtforms.validators import DataRequired
 
-class BlogPostForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired()])
-    text = TextAreaField('Text', validators=[DataRequired()])
+class TrailForm(FlaskForm):
+    trail_name = StringField('Trail Name', validators=[DataRequired()])
+    distance = IntegerField('Distance', validators=[DataRequired()])
+    review = IntegerField('Review', validators=[DataRequired()])
+    comment = TextAreaField('Comment', validators=[DataRequired()])
+    trail_image = StringField('Trail Image', validators=[DataRequired()])
     submit = SubmitField('Post')
