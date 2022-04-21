@@ -5,14 +5,26 @@
           {{form.hidden_tag()}}
 
           <div class="form-group">
-              {{form.title.label(class="form-control-label")}}
-              {{form.title(class="form-control form-control-lg")}}
+              {{form.trail_name.label(class="form-control-label")}}
+              {{form.trail_name(class="form-control form-control-lg")}}
           </div>
           <div class="form-group">
-            {{form.text.label(class="form-control-label")}}
-            {{form.text(class="form-control form-control-lg")}}
-        </div>
-        <div class="form-group">
+            {{form.distance.label(class="form-control-label")}}
+            {{form.distance(class="form-control form-control-lg")}}
+          </div>
+          <div class="form-group">
+            {{form.review.label(class="form-control-label")}}
+            {{form.review(class="form-control form-control-lg")}}
+          </div>
+          <div class="form-group">
+            {{form.comment.label(class="form-control-label")}}
+            {{form.comment(class="form-control form-control-lg")}}
+          </div>
+          <div class="form-group">
+            {{form.trail_image.label(class="form-control-label")}}
+            {{form.trail_image(class="form-control form-control-lg")}}
+          </div>
+          <div class="form-group">
             {{form.submit(class="btn btn-outline-info")}}
         </div>
       </form>
