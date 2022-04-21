@@ -56,3 +56,8 @@ app.register_blueprint(users)
 # Linking and registering blog_posts views Blueprint
 from myapp.trails.views import trails
 app.register_blueprint(trails)
+
+# Registering Blueprints -
+
+from myapp.core.views import core 
+app.register_blueprint(core)
