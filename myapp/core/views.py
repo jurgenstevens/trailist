@@ -1,6 +1,6 @@
 # core/views.py 
-
 from flask import render_template, request, Blueprint
+from myapp.models import Trail
 
 core = Blueprint('core', __name__)
 
