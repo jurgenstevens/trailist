@@ -24,3 +24,15 @@ def create_trail():
         print('Trail was created')
         return redirect(url_for('core.index'))
     return render_template('create_trail.html', form=form)
+
+@trails.route('/<int:trail_id>')
+def trail(trail_id):
+    trail = Trail.query.get_or_404(trail_id)
+    return render_template('trail.html', 
+            trail_name=trail.trail_name, 
+            distance=trail.distance, 
+            review=trail.review, 
+            comment=trail.comment, 
+            trail_image=trail.trail_image,
+            trail=trail
+            )
