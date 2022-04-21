@@ -6,7 +6,7 @@ from myapp.trails.forms import TrailForm
 
 trails = Blueprint('trails', __name__)
 
-# this view route allows us to create a trail
+# this route's function allows us to create a trail
 @trails.route('/create', methods=['GET', 'POST'])
 @login_required
 def create_trail():
@@ -38,7 +38,7 @@ def show_trail(trail_id):
             trail_image=trail.trail_image,
             trail=trail)
 
-# this view route will allow us to update a trail
+# this route's function will allow us to update a trail
 @trails.route('/<int:trail_id>/update',methods=['GET','POST'])
 @login_required
 def update_trail(trail_id):
@@ -66,4 +66,18 @@ def update_trail(trail_id):
         trail.comment = form.comment.data, 
         trail.trail_image = form.trail_image.data
 
-    return render_template('create_post.html',title='Updating',form=form)
+    return render_template('create_trail.html',title='Updating',form=form)
+
+# this function will allow us to delete a trail by id.
+@trails.route('/<int:trail_id>/delete',methods=['GET','POST'])
+@login_required
+def delete_trail(trail_id):
+
+    trail = Trail.query.get_or_404(trail_id)
+    if trail.author != current_user:
+        abort(403)
+
+    db.session.delete(trail)
+    db.session.commit()
+    flash('Trail Deleted')
+    return redirect(url_for('core.index'))
